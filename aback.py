@@ -52,6 +52,9 @@ class AbackInterpreter:
                             return False, self, ('InvalidNameError', f'Name \'{word[:-1]}\' may not be used.'), (line_index + 1, word_index + 1, line)
                     elif word == 'flush':
                         self.stack = []
+                    elif word == '/*':
+                        # comment
+                        def_tree.append(['comment'])
                     elif word == '':
                         # empty word - do nothing
                         pass
@@ -75,6 +78,9 @@ class AbackInterpreter:
                         def_tree.pop()
                     else:
                         def_tree[-1][2].append(word)
+                elif def_tree[-1][0] == 'comment':
+                    if word == '*/':
+                        def_tree.pop()
                 word_index += 1
             line_index += 1
         # making sure all definitions are finished - if not, return error

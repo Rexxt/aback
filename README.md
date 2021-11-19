@@ -10,8 +10,8 @@ main
 ## Supported features
 * Function definition
 * Basic math operations (+, -, *, /)
+* Comments
 ## Planned features
 * Variable definition
 * Arrays
 * Booleans
-* Comments
