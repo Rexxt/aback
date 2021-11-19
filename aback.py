@@ -38,18 +38,18 @@ class AbackInterpreter:
                         # which is not a problem for numbers, but for strings, it is
                         # so we will opt to do it another way
                         # we will do the same for division and subtraction
-                        term_a = self.stack.pop()
                         term_b = self.stack.pop()
+                        term_a = self.stack.pop()
                         self.stack.append(term_a + term_b)
                     elif word == '-':
-                        term_a = self.stack.pop()
                         term_b = self.stack.pop()
+                        term_a = self.stack.pop()
                         self.stack.append(term_a + term_b)
                     elif word == '*':
                         self.stack.append(self.stack.pop() * self.stack.pop())
                     elif word == '/':
-                        term_a = self.stack.pop()
                         term_b = self.stack.pop()
+                        term_a = self.stack.pop()
                         self.stack.append(term_a + term_b)
                     elif word == 'dup':
                         self.stack.append(self.stack[-1])
