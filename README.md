@@ -7,3 +7,11 @@ main: /* define function main */
 ;; /* end def */
 main
 ```
+## Supported features
+* Function definition
+* Basic math operations (+, -, *, /)
+## Planned features
+* Variable definition
+* Arrays
+* Booleans
+* Comments

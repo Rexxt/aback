@@ -49,7 +49,7 @@ class AbackInterpreter:
                         if not word[1].isdigit() and not word[:-1] in ('print', '+', '-', '*', '/', 'dup', 'drop', 'swap', 'over', 'rot', '"', 'flush', ':', ';;'):
                             def_tree.append(['def', word[:-1], []])
                         else:
-                            return False, self, ('InvalidNameError', f'Name {word[:-1]} may not be used.'), (line_index + 1, word_index + 1, line)
+                            return False, self, ('InvalidNameError', f'Name \'{word[:-1]}\' may not be used.'), (line_index + 1, word_index + 1, line)
                     elif word == 'flush':
                         self.stack = []
                     elif word == '':
@@ -60,7 +60,7 @@ class AbackInterpreter:
                             self.interpret(self.words[word])
                         finally: pass
                     else:
-                        return False, self, ('UnknownWordError', f'Word {word} was not found.'), (line_index + 1, word_index + 1, line)
+                        return False, self, ('UnknownWordError', f'Word \'{word}\' was not found.'), (line_index + 1, word_index + 1, line)
                 elif def_tree[-1][0] == 'string':
                     if word == '"':
                         self.stack.append(" ".join(def_tree[-1][1]))
@@ -77,4 +77,12 @@ class AbackInterpreter:
                         def_tree[-1][2].append(word)
                 word_index += 1
             line_index += 1
+        # making sure all definitions are finished - if not, return error
+        if len(def_tree) > 0:
+            def_name_repr = ''
+            if def_tree[-1][0] == 'def':
+                def_name_repr = 'word'
+            else:
+                def_name_repr = def_tree[-1][0]
+            return False, self, ('EOFError', f'Unexpected end of file while defining {def_name_repr}. Please make sure all definitions are finished.'), (line_index + 1, word_index + 1, line)
         return True, self, None, (line_index + 1, word_index + 1, line) # success, interpreter, error, position
