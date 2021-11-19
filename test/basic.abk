@@ -12,3 +12,11 @@ cube:
     dup square *
 ;;
 3 cube print
+
+/* string duplication/concatenation */
+string_dup:
+  dup +
+;;
+
+" a " " b " + print
+" . " string_dup print

@@ -34,13 +34,23 @@ class AbackInterpreter:
                     if word == 'print':
                         print(self.repr_data(self.stack.pop()))
                     elif word == '+':
-                        self.stack.append(self.stack.pop() + self.stack.pop())
+                        # if we directly do self.stack.append(self.stack.pop() + self.stack.pop()), we will add things in reverse order
+                        # which is not a problem for numbers, but for strings, it is
+                        # so we will opt to do it another way
+                        # we will do the same for division and subtraction
+                        term_a = self.stack.pop()
+                        term_b = self.stack.pop()
+                        self.stack.append(term_a + term_b)
                     elif word == '-':
-                        self.stack.append(-self.stack.pop() + self.stack.pop())
+                        term_a = self.stack.pop()
+                        term_b = self.stack.pop()
+                        self.stack.append(term_a + term_b)
                     elif word == '*':
                         self.stack.append(self.stack.pop() * self.stack.pop())
                     elif word == '/':
-                        self.stack.append(self.stack.pop() / self.stack.pop())
+                        term_a = self.stack.pop()
+                        term_b = self.stack.pop()
+                        self.stack.append(term_a + term_b)
                     elif word == 'dup':
                         self.stack.append(self.stack[-1])
                     elif word == 'drop':
@@ -90,6 +100,8 @@ class AbackInterpreter:
                         def_tree.pop()
                     elif word == '\\"':
                         def_tree[-1][1].append('"')
+                    elif word == '':
+                        def_tree[-1][1].append(' ')
                     else:
                         def_tree[-1][1].append(word)
                 elif def_tree[-1][0] == 'def':
