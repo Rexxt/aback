@@ -1,0 +1,14 @@
+hw:
+    " Hello, world! " print
+;;
+hw
+
+square:
+    dup *
+;;
+3 square print
+
+cube:
+    dup square *
+;;
+3 cube print
