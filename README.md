@@ -11,7 +11,8 @@ main
 * Function definition
 * Basic math operations (+, -, *, /)
 * Comments
+* Booleans
+* Null
 ## Planned features
 * Variable definition
 * Arrays
-* Booleans

@@ -27,4 +27,4 @@ else:
         success, intr, err, pos = interpreter.interpret(code)
         if not success:
             print(repr_error(intr.source, pos[0], pos[1], err[0], pos[2], err[1]))
-        print(intr.stack)
+        print(term.orange + term.bold + '[' + intr.repr_stack(intr.stack) + ']' + term.normal)

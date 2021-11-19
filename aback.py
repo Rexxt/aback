@@ -5,6 +5,19 @@ class AbackInterpreter:
         self.words = {}
         self.source = ''
 
+    def repr_data(self, data):
+        if data == True:
+            return 'true'
+        elif data == False:
+            return 'false'
+        elif data == None:
+            return 'null'
+        else:
+            return str(data)
+    
+    def repr_stack(self, stack):
+        return ', '.join([self.repr_data(data) for data in stack])
+
     def interpret(self, code):
         lines = code.split('\n')
         line_index = 0
@@ -19,7 +32,7 @@ class AbackInterpreter:
                 word = words[word_index]
                 if len(def_tree) == 0:
                     if word == 'print':
-                        print(self.stack.pop())
+                        print(self.repr_data(self.stack.pop()))
                     elif word == '+':
                         self.stack.append(self.stack.pop() + self.stack.pop())
                     elif word == '-':
@@ -55,6 +68,13 @@ class AbackInterpreter:
                     elif word == '/*':
                         # comment
                         def_tree.append(['comment'])
+                    # booleans
+                    elif word == 'true':
+                        self.stack.append(True)
+                    elif word == 'false':
+                        self.stack.append(False)
+                    elif word == 'null':
+                        self.stack.append(None)
                     elif word == '':
                         # empty word - do nothing
                         pass
