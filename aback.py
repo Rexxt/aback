@@ -44,13 +44,13 @@ class AbackInterpreter:
                     elif word == '-':
                         term_b = self.stack.pop()
                         term_a = self.stack.pop()
-                        self.stack.append(term_a + term_b)
+                        self.stack.append(term_a - term_b)
                     elif word == '*':
                         self.stack.append(self.stack.pop() * self.stack.pop())
                     elif word == '/':
                         term_b = self.stack.pop()
                         term_a = self.stack.pop()
-                        self.stack.append(term_a + term_b)
+                        self.stack.append(term_a / term_b)
                     elif word == 'dup':
                         self.stack.append(self.stack[-1])
                     elif word == 'drop':
