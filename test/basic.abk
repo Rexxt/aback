@@ -20,3 +20,8 @@ string_dup:
 
 " a " " b " + print
 " . " string_dup print
+
+include .\test\bas2 ;;
+
+" Hello guys " printWithEndingDot
+hiStr print

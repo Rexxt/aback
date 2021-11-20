@@ -13,6 +13,10 @@ main
 * Comments
 * Booleans
 * Null
+* Variables
+* exit word
+* Module import
 ## Planned features
-* Variable definition
 * Arrays
+* If, while, for
+* Python modules?

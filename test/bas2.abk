@@ -1,0 +1,5 @@
+printWithEndingDot:
+    " . " + print
+;;
+
+" Hi! " $hiStr

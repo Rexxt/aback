@@ -15,16 +15,18 @@ if len(argv) > 1:
     interpreter.source = argv[1]
     with open(argv[1]) as file:
         code = file.read()
-        success, intr, err, pos = interpreter.interpret(code)
+        success, intr, err, pos, do_exit = interpreter.interpret(code)
         if not success:
             print(repr_error(intr.source, pos[0], pos[1], err[0], pos[2], err[1]))
 else:
+    print(f"""Aback v{interpreter.version} shell
+Predefined variables: {interpreter.repr_vars(interpreter.vars)}""")
     interpreter.source = '<stdin>'
     while True:
         code = input('aback> ')
-        if code == 'exit':
-            break
-        success, intr, err, pos = interpreter.interpret(code)
+        success, intr, err, pos, do_exit = interpreter.interpret(code)
         if not success:
             print(repr_error(intr.source, pos[0], pos[1], err[0], pos[2], err[1]))
         print(term.orange + term.bold + '[' + intr.repr_stack(intr.stack) + ']' + term.normal)
+        if do_exit:
+            break
