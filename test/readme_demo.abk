@@ -3,8 +3,8 @@ main: /* define function main */
 ;; /* end def */
 main
 
-0 $x
-x dup /* push the value of x to the stack twice */
+0 $n
+n dup /* push the value of n to the stack twice */
 print /* print the first occurence */
-1 + $x /* , and increase the other by one and push it back into x */
-x print /* and finally show it to the screen */
+1 + $n /* , and increase the other by one and push it back into n */
+n print /* and finally show it to the screen */

@@ -127,6 +127,7 @@ class AbackInterpreter:
                         # include mode
                         def_tree.append(['include', ['']])
                     elif word.startswith("$"):
+                        #print(not word[1].isdigit(), not word[:-1] in self.words, not word[:-1] in defined_words, word[:-1].isalnum())
                         if not word[1].isdigit() and not word[1:] in self.words and not word[:-1] in defined_words and word[1:].isalnum():
                             self.vars[word[1:]] = self.stack.pop()
                         else:
